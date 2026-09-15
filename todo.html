@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h2{
+        color: rgb(52, 52, 128);
+    }
+    li{
+        color: rgb(67, 67, 180);
+    }
+    
+    
+</style>
+<script>
+    let tasks = [];
+    function addTask(){
+        let task = document.getElementById("task").value;
+        tasks.push(task);
+
+        document.getElementById("list").innerHTML = "";
+
+        for(let i = 0; i < tasks.length; i++){
+            document.getElementById("list").innerHTML += 
+            "<li>" +
+            "<button onclick='deleteTask(" + i +")'> Delete </button>" + tasks[i] +
+            "</li>";
+            document.getElementById("task").value= "";
+        }
+
+        function deleteTask(index){
+            tasks.splice(index, 1);
+
+            document.getElementById("list").innerHTML = "";
+
+            for(let i = 0; i < tasks.length; i++){
+            document.getElementById("list").innerHTML += 
+            "<li>" +
+            "<button onclick='deleteTask(" + i +")'> Delete </button>" + tasks[i] + 
+            "</li>";  
+            document.getElementById("task").value= "";
+        }
+        }
+    }
+</script>
+<body>
+    <h2>To-do List</h2>
+    <input type="text" placeholder="Enter your task" id="task">
+
+    <button onclick="addTask()">Add</button>
+    <ul id="list"></ul>
+</body>
+</html>
